@@ -13,7 +13,7 @@ gem 'cancancan', '~> 1.10'
 # gem 'angular-rails-templates'
 # gem "haml-rails", "~> 0.9"
 gem 'sprockets'
-# gem 'devise_token_auth', git: "https://github.com/lynndylanhurley/devise_token_auth.git"
+gem 'devise_token_auth', git: "https://github.com/lynndylanhurley/devise_token_auth.git"
 # gem 'ng-rails-csrf'
 # gem 'angular_rails_csrf'
 gem 'omniauth-facebook'
