@@ -9,9 +9,16 @@ gem 'jquery-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'cancancan', '~> 1.10'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-angular'
+  gem 'rails-assets-angular-resource'
+  gem 'rails-assets-angular-ui-tree'
+  gem 'rails-assets-angular-route'
+  gem 'rails-assets-angular-cookie'
+  gem 'rails-assets-ng-token-auth'
+end
+gem 'angular-rails-templates'
 # gem "bower-rails", "~> 0.10.0"
-# gem 'angular-rails-templates'
-# gem "haml-rails", "~> 0.9"
 gem 'sprockets'
 gem 'devise_token_auth', git: "https://github.com/lynndylanhurley/devise_token_auth.git"
 # gem 'ng-rails-csrf'
