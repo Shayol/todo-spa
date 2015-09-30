@@ -25,7 +25,8 @@ gem 'devise_token_auth', git: "https://github.com/lynndylanhurley/devise_token_a
 # gem 'angular_rails_csrf'
 gem 'omniauth-facebook'
 gem 'carrierwave'
-# gem 'cloudinary'
+gem 'carrierwave-dropbox'
+gem 'figaro'
 gem "font-awesome-rails"
 # gem 'active_model_serializers'
 
