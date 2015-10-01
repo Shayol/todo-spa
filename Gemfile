@@ -16,6 +16,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-angular-route'
   gem 'rails-assets-angular-cookie'
   gem 'rails-assets-ng-token-auth'
+  gem 'rails-assets-angular-ui-router'
 end
 gem 'angular-rails-templates'
 # gem "bower-rails", "~> 0.10.0"

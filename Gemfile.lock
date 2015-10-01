@@ -167,6 +167,8 @@ GEM
       rails-assets-angular (= 1.4.6)
     rails-assets-angular-route (1.4.6)
       rails-assets-angular (= 1.4.6)
+    rails-assets-angular-ui-router (0.2.15)
+      rails-assets-angular (>= 1.0.8)
     rails-assets-angular-ui-tree (2.9.0)
       rails-assets-angular
     rails-assets-ng-token-auth (0.0.28)
@@ -273,6 +275,7 @@ DEPENDENCIES
   rails-assets-angular-cookie!
   rails-assets-angular-resource!
   rails-assets-angular-route!
+  rails-assets-angular-ui-router!
   rails-assets-angular-ui-tree!
   rails-assets-ng-token-auth!
   rails_12factor
