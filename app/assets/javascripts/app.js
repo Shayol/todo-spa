@@ -14,6 +14,10 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
     });
 });
 
+myApp.config(function(RestangularProvider) {
+  RestangularProvider.setBaseUrl('/api');
+  RestangularProvider.setRequestSuffix('.json');
+});
 
 
 
