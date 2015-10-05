@@ -8,28 +8,26 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'cancancan', '~> 1.10'
 source 'https://rails-assets.org' do
   gem 'rails-assets-angular'
-  gem 'rails-assets-angular-resource'
-  gem 'rails-assets-angular-ui-tree'
-  gem 'rails-assets-angular-route'
+  gem 'rails-assets-lodash'
+  gem 'rails-assets-restangular'
   gem 'rails-assets-angular-cookie'
   gem 'rails-assets-ng-token-auth'
   gem 'rails-assets-angular-ui-router'
 end
 gem 'angular-rails-templates'
-# gem "bower-rails", "~> 0.10.0"
 gem 'sprockets'
 gem 'devise_token_auth', git: "https://github.com/lynndylanhurley/devise_token_auth.git"
-# gem 'ng-rails-csrf'
-# gem 'angular_rails_csrf'
+gem 'ng-rails-csrf'
+gem 'angular_rails_csrf'
+gem 'cancancan', '~> 1.10'
 gem 'omniauth-facebook'
 gem 'carrierwave'
 gem 'carrierwave-dropbox'
 gem 'figaro'
 gem "font-awesome-rails"
-# gem 'active_model_serializers'
+gem 'active_model_serializers'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'

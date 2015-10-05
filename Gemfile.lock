@@ -36,6 +36,8 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.1)
+    active_model_serializers (0.9.3)
+      activemodel (>= 3.2)
     activejob (4.2.2)
       activesupport (= 4.2.2)
       globalid (>= 0.3.0)
@@ -56,6 +58,8 @@ GEM
       railties (>= 3.1)
       sprockets
       tilt
+    angular_rails_csrf (1.0.4)
+      rails (>= 3, < 5)
     arel (6.0.3)
     bcrypt (3.1.10)
     builder (3.2.2)
@@ -128,6 +132,7 @@ GEM
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    ng-rails-csrf (0.1.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     oauth2 (1.0.0)
@@ -163,17 +168,15 @@ GEM
     rails-assets-angular (1.4.6)
     rails-assets-angular-cookie (4.0.9)
       rails-assets-angular
-    rails-assets-angular-resource (1.4.6)
-      rails-assets-angular (= 1.4.6)
-    rails-assets-angular-route (1.4.6)
-      rails-assets-angular (= 1.4.6)
     rails-assets-angular-ui-router (0.2.15)
       rails-assets-angular (>= 1.0.8)
-    rails-assets-angular-ui-tree (2.9.0)
-      rails-assets-angular
+    rails-assets-lodash (3.10.1)
     rails-assets-ng-token-auth (0.0.28)
       rails-assets-angular (~> 1.4.4)
       rails-assets-angular-cookie (~> 4.0.9)
+    rails-assets-restangular (1.5.1)
+      rails-assets-angular (~> 1.0)
+      rails-assets-lodash (>= 1.3.0)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.7)
@@ -255,7 +258,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers
   angular-rails-templates
+  angular_rails_csrf
   cancancan (~> 1.10)
   capybara
   carrierwave
@@ -268,16 +273,16 @@ DEPENDENCIES
   figaro
   font-awesome-rails
   jquery-rails
+  ng-rails-csrf
   omniauth-facebook
   pg
   rails (= 4.2.2)
   rails-assets-angular!
   rails-assets-angular-cookie!
-  rails-assets-angular-resource!
-  rails-assets-angular-route!
   rails-assets-angular-ui-router!
-  rails-assets-angular-ui-tree!
+  rails-assets-lodash!
   rails-assets-ng-token-auth!
+  rails-assets-restangular!
   rails_12factor
   rspec-rails (~> 3.0)
   sass-rails (~> 5.0)
