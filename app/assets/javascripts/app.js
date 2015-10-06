@@ -9,7 +9,7 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('/projects', {
       url: "/projects",
-      template: "<form ng-submit='addProject()' ng-init='project={}' novalidate><input type='text' ng-model='project.title' /><input type='submit' value='Submit'></form><h1>HELLO! bkkkkkk</h1><ul><li ng-repeat='project in projects'>{{ project.title }}</li></ul>"
+      template: "<form novalidate><input type='text' ng-model='project.title' /><input type='submit' ng-click='addProject(project)' value='Submit'></form><h1>HELLO! bkkkkkk</h1><ul><li ng-repeat='project in projects'>{{ project.title }}</li></ul>"
       //templateUrl: "projects.html"
       // controller: "MainCtrl"
     });
@@ -48,7 +48,7 @@ myApp.controller('MainCtrl', function($scope, Restangular) {
   // // Returns an empty array by default. Once a value is returned from the server
   // // that array is filled with those values. So you can use this in your template
   $scope.projects = Restangular.all('projects').getList();
-  $scope.addProject = function() {
-    Restangular.all("projects").post($scope.project);
+  $scope.addProject = function(project) {
+    Restangular.all("projects").post(project);
   };
 });
