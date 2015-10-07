@@ -14,7 +14,8 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.create(project_params)  ## current user
-    redirect_to project_path(@project, format: :json)
+    #redirect_to project_path(@project, format: :json)
+    render json: @project
   end
 
   def destroy

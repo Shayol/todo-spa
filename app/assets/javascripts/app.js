@@ -9,33 +9,55 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('/projects', {
       url: "/projects",
-      template: "<form novalidate><input type='text' ng-model='project.title' /><input type='submit' ng-click='addProject(project)' value='Submit'></form><h1>HELLO! bkkkkkk</h1><ul><li ng-repeat='project in projects'>{{ project.title }}</li></ul>"
-      //templateUrl: "projects.html"
-      // controller: "MainCtrl"
+      templateUrl: "assets/templates/projects.html",
+      controller: "ProjectsCtrl"
+    })
+    .state('/new_project', {
+      url: "/projects/new",
+      templateUrl: "assets/templates/new_project.html",
+      controller: "NewProjectCtrl"
     });
 });
 
 myApp.config(function(RestangularProvider) {
   RestangularProvider.setBaseUrl('/api');
   RestangularProvider.setRequestSuffix('.json');
-  // RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
-  //     var extractedData;
-  //     if (operation === "getList") {
-  //       extractedData = data.result;
-  //     } else {
-  //       extractedData = data;
-  //     }
-  //     return extractedData;
-  //   });
+  RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
+      var extractedData;
+      if (operation === "getList") {
+        extractedData = data.projects;
+      } else {
+        extractedData = data;
+      }
+      return extractedData;
+    });
+//   Restangular.setErrorInterceptor(function(response, deferred, responseHandler) {
+//     if(response.status === 403) {
+//         refreshAccesstoken().then(function() {
+//             // Repeat the request and then call the handlers the usual way.
+//             $http(response.config).then(responseHandler, deferred.reject);
+//             // Be aware that no request interceptors are called this way.
+//         });
+
+//         return false; // error handled
+//     }
+
+//     return true; // error not handled
+// });
+});
+
+myApp.controller('MainCtrl', function($scope, Restangular) {});
+
+myApp.controller('NewProjectCtrl', function($scope, $state, Restangular) {
+  $scope.addProject = function(project) {
+    Restangular.all("projects").post(project);
+    $state.go('/projects');
+  };
 });
 
 
 
-
-
-
-
-myApp.controller('MainCtrl', function($scope, Restangular) {
+myApp.controller('ProjectsCtrl', function($scope, Restangular) {
   //   // First way of creating a Restangular object. Just saying the base URL
   // var baseAccounts = Restangular.all('projects');
 
@@ -47,8 +69,5 @@ myApp.controller('MainCtrl', function($scope, Restangular) {
   // // Does a GET to /accounts
   // // Returns an empty array by default. Once a value is returned from the server
   // // that array is filled with those values. So you can use this in your template
-  $scope.projects = Restangular.all('projects').getList();
-  $scope.addProject = function(project) {
-    Restangular.all("projects").post(project);
-  };
+  $scope.projects = Restangular.all('projects').getList().$object;
 });
