@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ng-rails-csrf', 'ng-token-auth', 'templates', 'restangular', 'ui.router']);
+var myApp = angular.module('myApp', ['ng-rails-csrf', 'ng-token-auth', 'templates', 'restangular', 'ui.router', 'xeditable']);
 
 myApp.config(function($stateProvider, $urlRouterProvider) {
   //
@@ -9,7 +9,7 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('/projects', {
       url: "/projects",
-      templateUrl: "assets/templates/projects.html",
+      templateUrl: "assets/templates/projects.html.erb",
       controller: "ProjectsCtrl"
     })
     .state('/new_project', {
@@ -46,6 +46,10 @@ myApp.config(function(RestangularProvider) {
 // });
 });
 
+myApp.run(function(editableOptions) {
+  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+});
+
 myApp.controller('MainCtrl', function($scope, Restangular) {});
 
 myApp.controller('NewProjectCtrl', function($scope, $state, Restangular) {
@@ -58,16 +62,19 @@ myApp.controller('NewProjectCtrl', function($scope, $state, Restangular) {
 
 
 myApp.controller('ProjectsCtrl', function($scope, Restangular) {
-  //   // First way of creating a Restangular object. Just saying the base URL
-  // var baseAccounts = Restangular.all('projects');
-
-  // // This will query /accounts and return a promise.
-  // baseAccounts.getList().then(function(accounts) {
-  //   $scope.allAccounts = accounts;
-  // });
-
-  // // Does a GET to /accounts
-  // // Returns an empty array by default. Once a value is returned from the server
-  // // that array is filled with those values. So you can use this in your template
   $scope.projects = Restangular.all('projects').getList().$object;
+  $scope.removeProject = function(project) {
+    project.remove().then(function() {
+      var index = $scope.projects.indexOf(project);
+      if (index > -1) $scope.projects.splice(index, 1);
+    });
+  };
+  $scope.updateProject = function(project) {
+    project.save();
+  };
+  $scope.addTask = function(project, newTask) {
+    project.all("tasks").post(newTask).then(function(){
+      $scope.projects[$scope.projects.indexOf(project)].tasks.push(newTask);
+    });
+  };
 });

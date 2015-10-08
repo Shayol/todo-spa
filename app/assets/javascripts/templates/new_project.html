@@ -1,4 +1,10 @@
 <form novalidate>
-  <input type='text' ng-model='project.title' />
-  <input type='submit' ng-click='addProject(project)' value='Submit'>
+  <div class="row">
+    <div class="col-md-8 offset-col-md-2">
+      <input type='text' ng-model='project.title' class="form-control"/>
+    </div>
+    <div class="col-md-2">
+      <input type='submit' ng-click='addProject(project)' value='Submit' class="btn btn-info" />
+    </div>
+  </div>
 </form>

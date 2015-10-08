@@ -8,6 +8,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    @project=Project.find(params[:id])
     @project.update_attributes(project_params)
     render json: @project
   end
@@ -19,12 +20,13 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
+    @project=Project.find(params[:id])
     @project.destroy
     render json: { nothing: true }
   end
   private
 
   def project_params
-    params.require(:project).permit(:title)
+    params.require(:project).permit(:title, :position, :id)
   end
 end

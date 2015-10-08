@@ -61,7 +61,13 @@ GEM
     angular_rails_csrf (1.0.4)
       rails (>= 3, < 5)
     arel (6.0.3)
+    autoprefixer-rails (6.0.3)
+      execjs
+      json
     bcrypt (3.1.10)
+    bootstrap-sass (3.3.5.1)
+      autoprefixer-rails (>= 5.0.0.1)
+      sass (>= 3.3.0)
     builder (3.2.2)
     cancancan (1.12.0)
     capybara (2.5.0)
@@ -170,6 +176,8 @@ GEM
       rails-assets-angular
     rails-assets-angular-ui-router (0.2.15)
       rails-assets-angular (>= 1.0.8)
+    rails-assets-angular-xeditable (0.1.9)
+      rails-assets-angular (~> 1.0)
     rails-assets-lodash (3.10.1)
     rails-assets-ng-token-auth (0.0.28)
       rails-assets-angular (~> 1.4.4)
@@ -261,6 +269,7 @@ DEPENDENCIES
   active_model_serializers
   angular-rails-templates
   angular_rails_csrf
+  bootstrap-sass (~> 3.3.5)
   cancancan (~> 1.10)
   capybara
   carrierwave
@@ -280,6 +289,7 @@ DEPENDENCIES
   rails-assets-angular!
   rails-assets-angular-cookie!
   rails-assets-angular-ui-router!
+  rails-assets-angular-xeditable!
   rails-assets-lodash!
   rails-assets-ng-token-auth!
   rails-assets-restangular!

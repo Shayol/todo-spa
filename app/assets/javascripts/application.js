@@ -15,10 +15,12 @@
 //= require angular/angular
 //= require lodash/lodash
 //= require ng-rails-csrf
+//= require bootstrap-sprockets
 //= require angular-ui-router
 //= require restangular
 //= require angular-rails-templates
 //= require angular-cookie/angular-cookie
 //= require ng-token-auth
+//= require angular-xeditable
 //= require_tree ./templates
 //= require_tree .
