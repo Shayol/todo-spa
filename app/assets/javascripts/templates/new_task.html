@@ -1,0 +1,13 @@
+<form novalidate >
+  <div class="row new-task">
+  <div class="col-md-2 col-md-offset-1">
+    <input type='text' ng-model='newTask.deadline' class="task_deadline" placeholder="MM-DD-YY" />
+  </div>
+  <div class="col-md-7 new-task-input">
+    <input type='text' ng-model='newTask.title' class="form-control" placeholder="Start typing here to create a task..." />
+  </div>
+  <div class="col-md-2">
+    <input type='submit' ng-click='addTask(project, newTask)' value='Add task' class="btn task"/>
+</form>
+</div>
+</div>

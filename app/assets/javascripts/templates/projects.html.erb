@@ -1,33 +1,41 @@
 
-      <div class="project" id="project_{{ project.id }}" ng-repeat='project in projects'>
-      <div class="row project-header" id="project_row_{{ project.id }}">
+<div class="project" id="project_{{ project.id }}" ng-repeat='project in projects'>
+  <div class="row project-header" id="project_row_{{ project.id }}">
+  <div class="col-md-2 col-md-offset-1">
+    <i class="fa fa-calendar fa-2x"></i>
+  </div>
+  <div class="col-md-7 project-title" editable-text='project.title' onaftersave="updateProject(project)">{{ project.title }}
+  </div>
+  <div class="col-md-2">
+      <i class="fa fa-pencil"></i>
+      <i class="fa fa-trash" ng-click='removeProject(project)'></i>
+  </div>
+</div>
+
+    <div ui-view='/new_task'></div>
+
+<div ng-repeat="task in project.tasks">
+
+  <div id="task_row_{{ task.id }}">
+    <div class="row" >
       <div class="col-md-2 col-md-offset-1">
-        <i class="fa fa-calendar fa-2x"></i>
+            <i class="fa fa-square-o" id="checkbox" ng-hide='task.done'></i>
+            <i class="fa fa-check-square-o" ng-show='task.done' id="checkbox"></i>
+        <span class="deadline-formatted" >{{task.deadline}}</span>
+        <a href="#" editable-bsdate="user.deadline" e-datepicker-popup="dd-MMMM-yyyy">
+          {{ (user.deadline | date:"dd/MM/yyyy") || 'empty' }}
+        </a>
       </div>
-      <div class="col-md-7 project-title" editable-text='project.title' onaftersave="updateProject(project)">{{ project.title }}
+      <div class="col-md-7">
+          {{task.title }}
       </div>
       <div class="col-md-2">
-          <i class="fa fa-pencil"></i>
-          <i class="fa fa-trash" ng-click='removeProject(project)'></i>
+        <i class="fa fa-trash" ng-click='removeTask(project, task)'></i>
       </div>
-      </div>
-          <form novalidate >
-          <div class="row new-task">
-          <div class="col-md-2 col-md-offset-1">
-            <input type='text' ng-model='newTask.deadline' class="task_deadline" placeholder="MM-DD-YY" />
-          </div>
-          <div class="col-md-7 new-task-input">
-            <input type='text' ng-model='newTask.title' class="form-control" placeholder="Start typing here to create a task..." />
-          </div>
-          <div class="col-md-2">
-            <input type='submit' ng-click='addTask(project, newTask)' value='Add task' class="btn task"/>
-          </form>
-        </div>
-      </div>
-
-
-
     </div>
+  </div>
+  </div>
+</div>
 
   <div class="row">
     <div class="col-md-6 col-md-offset-3">

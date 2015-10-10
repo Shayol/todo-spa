@@ -22,5 +22,6 @@
 //= require angular-cookie/angular-cookie
 //= require ng-token-auth
 //= require angular-xeditable
+//= require angular-bootstrap
 //= require_tree ./templates
 //= require_tree .

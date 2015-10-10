@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ng-rails-csrf', 'ng-token-auth', 'templates', 'restangular', 'ui.router', 'xeditable']);
+var myApp = angular.module('myApp', ['ng-rails-csrf', 'ng-token-auth', 'templates', 'restangular', 'ui.router', 'xeditable', 'ui.bootstrap']);
 
 myApp.config(function($stateProvider, $urlRouterProvider) {
   //
@@ -16,6 +16,11 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
       url: "/projects/new",
       templateUrl: "assets/templates/new_project.html",
       controller: "NewProjectCtrl"
+    })
+    .state('/new_task', {
+      url: "/projects/:id/tasks/new",
+      templateUrl: "assets/templates/new_task.html",
+      controller: "NewTaskCtrl"
     });
 });
 
@@ -59,6 +64,14 @@ myApp.controller('NewProjectCtrl', function($scope, $state, Restangular) {
   };
 });
 
+myApp.controller('NewTaskCtrl', function($scope, $state, Restangular) {
+  $scope.addTask = function(project, newTask) {
+    project.all("tasks").post(newTask).then(function(){
+      $scope.projects[$scope.projects.indexOf(project)].tasks.push(newTask);
+    });
+  };
+});
+
 
 
 myApp.controller('ProjectsCtrl', function($scope, Restangular) {
@@ -69,12 +82,14 @@ myApp.controller('ProjectsCtrl', function($scope, Restangular) {
       if (index > -1) $scope.projects.splice(index, 1);
     });
   };
+  $scope.removeTask = function(project, task) {
+    task.remove().then(function() {
+      var project_index = $scope.projects.indexOf(project);
+      var index = $scope.projects[project_index].tasks.indexOf[task];
+      if (index > -1) $scope.projects[project_index].tasks.splice(index, 1);
+    });
+  };
   $scope.updateProject = function(project) {
     project.save();
-  };
-  $scope.addTask = function(project, newTask) {
-    project.all("tasks").post(newTask).then(function(){
-      $scope.projects[$scope.projects.indexOf(project)].tasks.push(newTask);
-    });
   };
 });
