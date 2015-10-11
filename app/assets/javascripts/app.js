@@ -16,12 +16,12 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
       url: "/projects/new",
       templateUrl: "assets/templates/new_project.html",
       controller: "NewProjectCtrl"
-    })
-    .state('/new_task', {
-      url: "/projects/:id/tasks/new",
-      templateUrl: "assets/templates/new_task.html",
-      controller: "NewTaskCtrl"
     });
+    // .state('/projects.new_task', {
+    //   url: "/projects/:id/tasks/new",
+    //   templateUrl: "assets/templates/new_task.html",
+    //   controller: "ProjectsCtrl"
+    // });
 });
 
 myApp.config(function(RestangularProvider) {
@@ -55,7 +55,9 @@ myApp.run(function(editableOptions) {
   editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
 });
 
-myApp.controller('MainCtrl', function($scope, Restangular) {});
+myApp.controller('MainCtrl', function($scope, Restangular, $state) {
+  // $state.transitionTo('/projects.new_task');
+});
 
 myApp.controller('NewProjectCtrl', function($scope, $state, Restangular) {
   $scope.addProject = function(project) {
@@ -64,13 +66,13 @@ myApp.controller('NewProjectCtrl', function($scope, $state, Restangular) {
   };
 });
 
-myApp.controller('NewTaskCtrl', function($scope, $state, Restangular) {
-  $scope.addTask = function(project, newTask) {
-    project.all("tasks").post(newTask).then(function(){
-      $scope.projects[$scope.projects.indexOf(project)].tasks.push(newTask);
-    });
-  };
-});
+// myApp.controller('NewTaskCtrl', function($scope, $state, Restangular) {
+//   $scope.addTask = function(project, newTask) {
+//     project.all("tasks").post(newTask).then(function(){
+//       $scope.projects[$scope.projects.indexOf(project)].tasks.push(newTask);
+//     });
+//   };
+// });
 
 
 
@@ -83,13 +85,23 @@ myApp.controller('ProjectsCtrl', function($scope, Restangular) {
     });
   };
   $scope.removeTask = function(project, task) {
-    task.remove().then(function() {
+    Restangular.one('tasks', task.id).remove().then(function() {
       var project_index = $scope.projects.indexOf(project);
-      var index = $scope.projects[project_index].tasks.indexOf[task];
+      var index = $scope.projects[project_index].tasks.indexOf(task);
       if (index > -1) $scope.projects[project_index].tasks.splice(index, 1);
     });
   };
   $scope.updateProject = function(project) {
-    project.save();
+    project.save().then(function(){
+    });
+  };
+
+  $scope.addTask = function(project, newTask) {
+    project.all("tasks").post(newTask).then(function(){
+      $scope.copyNewTask = angular.copy(newTask)
+      $scope.projects[$scope.projects.indexOf(project)].tasks.push($scope.copyNewTask);
+      $scope.newTask = {};
+      $scope.copyNewTask = null;
+    });
   };
 });

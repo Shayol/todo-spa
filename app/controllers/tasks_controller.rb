@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :find_task
+  before_action :find_task, except: [:create, :index]
   def index
     render json: @tasks
   end
@@ -14,7 +14,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = @project.tasks.create(task_params)
+    @task = Project.find(params[:project_id]).tasks.create(task_params)
     render json: @task
   end
 
@@ -25,7 +25,7 @@ class TasksController < ApplicationController
 
   private
   def find_task
-    @task = Project.find(params[:project_id]).tasks.find(params[:id])
+    @task = Task.find(params[:id])
   end
   def task_params
     params.require(:task).permit(:title, :position, :project_id, :done, :deadline)

@@ -56,6 +56,10 @@ footer {
 
 // Project -- Project Header
 
+.project {
+  margin-top: 100px;
+}
+
 .project-header > div[class*='col-'] {
   height: 50px;
   padding: 10px 0 12px 12px;
@@ -176,10 +180,6 @@ div[id*='task_row'] [class*='col-'] {
     border-bottom-right-radius: 10px;
     }
   }
-
-#task_row_ {
-  margin-bottom: 70px;
-}
 
 
 div.project .row > [class*='col-'] {

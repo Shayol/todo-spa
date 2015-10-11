@@ -12,7 +12,21 @@
   </div>
 </div>
 
-    <div ui-view='/new_task'></div>
+    <!-- <div ui-view='/projects.new_task'></div> -->
+
+    <form novalidate >
+  <div class="row new-task">
+  <div class="col-md-2 col-md-offset-1">
+    <input type='text' ng-model='newTask.deadline' class="task_deadline" placeholder="MM-DD-YY" />
+  </div>
+  <div class="col-md-7 new-task-input">
+    <input type='text' ng-model='newTask.title' class="form-control" placeholder="Start typing here to create a task..." />
+  </div>
+  <div class="col-md-2">
+    <input type='submit' ng-click='addTask(project, newTask)' value='Add task' class="btn task"/>
+</form>
+</div>
+</div>
 
 <div ng-repeat="task in project.tasks">
 
@@ -23,7 +37,7 @@
             <i class="fa fa-check-square-o" ng-show='task.done' id="checkbox"></i>
         <span class="deadline-formatted" >{{task.deadline}}</span>
         <a href="#" editable-bsdate="user.deadline" e-datepicker-popup="dd-MMMM-yyyy">
-          {{ (user.deadline | date:"dd/MM/yyyy") || 'empty' }}
+          {{ (task.deadline | date:"dd/MM/yyyy") || 'empty' }}
         </a>
       </div>
       <div class="col-md-7">
