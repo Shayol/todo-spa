@@ -14,7 +14,7 @@
 
     <!-- <div ui-view='/projects.new_task'></div> -->
 
-    <form novalidate >
+  <form novalidate >
   <div class="row new-task">
   <div class="col-md-2 col-md-offset-1">
     <input type='text' ng-model='newTask.deadline' class="task_deadline" placeholder="MM-DD-YY" />
@@ -33,10 +33,11 @@
   <div id="task_row_{{ task.id }}">
     <div class="row" >
       <div class="col-md-2 col-md-offset-1">
-            <i class="fa fa-square-o" id="checkbox" ng-hide='task.done'></i>
-            <i class="fa fa-check-square-o" ng-show='task.done' id="checkbox"></i>
-        <span class="deadline-formatted" >{{task.deadline}}</span>
-        <a href="#" editable-bsdate="user.deadline" e-datepicker-popup="dd-MMMM-yyyy">
+          <input type="checkbox" ng-checked="task.done" ng-click="toggleDone(task)"></input>
+            <!-- <i class="fa fa-square-o" id="checkbox" ng-hide='task.done'></i>
+            <i class="fa fa-check-square-o" ng-show='task.done' id="checkbox"></i> -->
+        <!-- <span class="deadline-formatted" >{{task.deadline}}</span> -->
+        <a href="#" editable-bsdate="task.deadline" e-datepicker-popup="dd-MMMM-yyyy">
           {{ (task.deadline | date:"dd/MM/yyyy") || 'empty' }}
         </a>
       </div>

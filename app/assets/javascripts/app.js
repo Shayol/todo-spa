@@ -30,7 +30,7 @@ myApp.config(function(RestangularProvider) {
   RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
       var extractedData;
       if (operation === "getList") {
-        extractedData = data.projects;
+        extractedData = data.projects || data.tasks;
       } else {
         extractedData = data;
       }
@@ -96,12 +96,24 @@ myApp.controller('ProjectsCtrl', function($scope, Restangular) {
     });
   };
 
+  // $scope.tasks = $scope.project.tasks
+  // refreshTasks = function(project) {
+  //   $scope.tasks = project.all("tasks").getList.$object;
+  // };
+
   $scope.addTask = function(project, newTask) {
     project.all("tasks").post(newTask).then(function(){
-      $scope.copyNewTask = angular.copy(newTask)
-      $scope.projects[$scope.projects.indexOf(project)].tasks.push($scope.copyNewTask);
-      $scope.newTask = {};
-      $scope.copyNewTask = null;
+      // $scope.copyNewTask = angular.copy(newTask)
+      // $scope.projects[$scope.projects.indexOf(project)].tasks.push($scope.copyNewTask);
+      // $scope.newTask = {};
+      // $scope.copyNewTask = null;
+      $scope.updateProject(project);
+    });
+  };
+
+  $scope.toggleDone = function(task) {
+    task.done = task.done === false ? true : false;
+    Restangular.one("tasks", task.id).patch(task).then(function(){
     });
   };
 });
