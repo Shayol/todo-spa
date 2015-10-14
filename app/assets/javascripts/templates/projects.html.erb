@@ -29,9 +29,8 @@
 </form>
 
 
-<div ng-controller="TaskCtrl" ng-repeat="task in tasks">
+<div id="task_row_{{ task.id }}" ng-controller="TaskCtrl" ng-repeat="task in tasks">
 
-  <div id="task_row_{{ task.id }}">
     <div class="row" >
       <div class="col-md-2 col-md-offset-1">
         <input type="checkbox" ng-checked="task.done" ng-click="toggleDone(task)"></input>
@@ -42,11 +41,46 @@
       <div class="col-md-7" editable-text='task.title' onaftersave="updateTask(task)">
           {{task.title }}
       </div>
-      <div class="col-md-2">
+      <div class="col-md-2 text-center">
+        <i class="fa fa-comment" ng-click='toggleComments= !toggleComments'></i>
         <i class="fa fa-trash" ng-click='removeTask(task)'></i>
       </div>
     </div>
+
+
+<div class="comments" ng-show="toggleComments">
+  <div class="row" ng-controller="CommentCtrl" ng-repeat="comment in comments">
+    <div class="col-md-9 col-md-offset-1">
+      <a href="#" editable-text='task.title' onaftersave="updateComment(comment)">
+        {{comment.title }}
+      </a>
+    </div>
   </div>
+  <div class="row">
+    <div class="col-md-9 col-md-offset-1 text-center">
+      <h4>New comment</h4>
+    </div>
+  </div>
+  <div class="row">
+
+      <form ng-controller="NewCommentCtrl">
+        <div class="col-md-7 col-md-offset-1 new-comment-input">
+          <input type='text' ng-model='newComment.text' class="form-control" placeholder="Start typing here to create a comment..." required />
+        </div>
+        <div class="col-md-2">
+          <input type='submit' ng-click='addComment(newComment)' value='Add comment' class="btn comment"></input>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
   </div>
 </div>
 

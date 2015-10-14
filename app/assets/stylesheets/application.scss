@@ -171,7 +171,7 @@ div[id*='task_row'] [class*='col-'] {
 // Grid -- Project Borders
 
 
-[id*='task_row']:nth-last-child(2) [class*='col-'] {
+[id*='task_row']:nth-last-child(1) [class*='col-'] {
   border-bottom: 1px solid #aaa;
   &:first-child {
     border-bottom-left-radius: 10px;

@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   scope :api do
     resources :projects, except: [:new, :edit] do
       resources :tasks, except: [:new, :edit] , shallow: true do
-      #   resources :comments, except: [:new, :edit], shallow: true do
+        resources :comments, except: [:new, :edit], shallow: true do
       #     resources :attached_files, except: [:new, :edit], shallow: true
-      #   end
+        end
       end
     end
   end
