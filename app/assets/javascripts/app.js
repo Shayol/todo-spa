@@ -30,7 +30,8 @@ myApp.config(function(RestangularProvider) {
   RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
       var extractedData;
       if (operation === "getList") {
-        extractedData = data.projects || data.tasks;
+        extractedData = data.projects;
+        if (!extractedData) extractedData = data.tasks;
       } else {
         extractedData = data;
       }
@@ -78,42 +79,61 @@ myApp.controller('NewProjectCtrl', function($scope, $state, Restangular) {
 
 myApp.controller('ProjectsCtrl', function($scope, Restangular) {
   $scope.projects = Restangular.all('projects').getList().$object;
-  $scope.removeProject = function(project) {
-    project.remove().then(function() {
-      var index = $scope.projects.indexOf(project);
+
+});
+
+myApp.controller('ProjectCtrl', function($scope, Restangular) {
+$scope.removeProject = function() {
+    $scope.project.remove().then(function() {
+      var index = $scope.projects.indexOf($scope.project);
       if (index > -1) $scope.projects.splice(index, 1);
     });
   };
-  $scope.removeTask = function(project, task) {
-    Restangular.one('tasks', task.id).remove().then(function() {
-      var project_index = $scope.projects.indexOf(project);
-      var index = $scope.projects[project_index].tasks.indexOf(task);
-      if (index > -1) $scope.projects[project_index].tasks.splice(index, 1);
-    });
-  };
-  $scope.updateProject = function(project) {
-    project.save().then(function(){
+
+  $scope.updateProject = function() {
+    $scope.project.save().then(function(){
     });
   };
 
-  // $scope.tasks = $scope.project.tasks
-  // refreshTasks = function(project) {
-  //   $scope.tasks = project.all("tasks").getList.$object;
-  // };
+  $scope.tasks = $scope.project.tasks;
 
-  $scope.addTask = function(project, newTask) {
-    project.all("tasks").post(newTask).then(function(){
+  refreshTasks = function() {
+    $scope.tasks = $scope.project.all("tasks").getList().$object;
+  };
+
+  $scope.addTask = function(newTask) {
+    $scope.project.all("tasks").post(newTask).then(function(task){
       // $scope.copyNewTask = angular.copy(newTask)
       // $scope.projects[$scope.projects.indexOf(project)].tasks.push($scope.copyNewTask);
       // $scope.newTask = {};
       // $scope.copyNewTask = null;
-      $scope.updateProject(project);
+     // refreshTasks();
+     // $scope.tasks.push(task);
     });
   };
 
+
+});
+
+
+
+myApp.controller('TaskCtrl', function($scope, Restangular) {
   $scope.toggleDone = function(task) {
     task.done = task.done === false ? true : false;
     Restangular.one("tasks", task.id).patch(task).then(function(){
     });
   };
+  $scope.removeTask = function(task) {
+    Restangular.one('tasks', task.id).remove().then(function() {
+      var project_index = $scope.projects.indexOf($scope.project);
+      var index = $scope.projects[project_index].tasks.indexOf(task);
+      if (index > -1) $scope.projects[project_index].tasks.splice(index, 1);
+    });
+  };
+
+  $scope.updateTask = function(task) {
+    Restangular.one('tasks', task.id).patch(task).then(function(){
+    });
+  };
+
 });
