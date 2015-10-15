@@ -4,8 +4,7 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
   //
   // For any unmatched url, redirect to /state1
   $urlRouterProvider.otherwise("/projects");
-  //
-  // Now set up the states
+
   $stateProvider
     .state('/projects', {
       url: "/projects",
@@ -56,14 +55,6 @@ myApp.controller('NewProjectCtrl', function($scope, $state, Restangular) {
   };
 });
 
-// myApp.controller('NewTaskCtrl', function($scope, $state, Restangular) {
-//   $scope.addTask = function(project, newTask) {
-//     project.all("tasks").post(newTask).then(function(){
-//       $scope.projects[$scope.projects.indexOf(project)].tasks.push(newTask);
-//     });
-//   };
-// });
-
 
 
 myApp.controller('ProjectsCtrl', function($scope, Restangular) {
@@ -87,12 +78,11 @@ $scope.removeProject = function() {
   $scope.tasks = $scope.project.tasks;
 
   $scope.refreshTasks = function() {
-    $scope.tasks = Restangular.one("projects", $scope.project.id).all("tasks").getList().$object; // why nulll
+    $scope.tasks = Restangular.one("projects", $scope.project.id).all("tasks").getList().$object;
   };
 
   $scope.addTask = function(newTask) {
     $scope.project.all("tasks").post(newTask).then(function(task){
-      //task.done = false;
       $scope.tasks.push(task);
       //$scope.refreshTasks();
     });

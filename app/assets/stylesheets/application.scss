@@ -100,11 +100,19 @@ form[id*='edit_project'] div[class*='col-'] {
 
 // Project -- Create
 
-#new_project div[class*='col-'] {
-  padding-left: 0px;
-  padding-right: 0px;
-  #project_title, btn[value='Create project'] {
-    width: 100%;
+.new_project {
+  width: 500px;
+  background-color: #F88379;
+  color: #475885;
+  padding: 30px;
+
+  h3 {
+  text-align: center;
+  }
+
+  input {
+  margin-top: 30px;
+  margin-bottom: 30px;
   }
 }
 
