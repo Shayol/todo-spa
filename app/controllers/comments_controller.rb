@@ -2,6 +2,8 @@ class CommentsController < ApplicationController
   before_action :find_comment, except: [:create, :index]
 
   def index
+    @task = Task.find(params[:task_id])
+    @comments = @task.comments
     render json: @comments
   end
 
@@ -31,6 +33,6 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
   end
   def comment_params
-    params.permit(:text, :id)  ## how without id ????
+    params.require(:comment).permit(:text, :id, :task_id)  ## how without id ????
   end
 end

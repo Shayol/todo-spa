@@ -51,37 +51,36 @@
 <div class="comments" ng-show="toggleComments">
   <div class="row" ng-controller="CommentCtrl" ng-repeat="comment in comments">
     <div class="col-md-9 col-md-offset-1">
-      <a href="#" editable-text='task.title' onaftersave="updateComment(comment)">
-        {{comment.title }}
+      <a href="#" editable-text='comment.text' onaftersave="updateComment(comment)">
+        {{comment.text }}
       </a>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-9 col-md-offset-1 text-center">
-      <h4>New comment</h4>
+    <div class="col-md-2 text-center">
+      <i class="fa fa-trash" ng-click='removeComment(comment)'></i>
     </div>
   </div>
   <div class="row">
+    <div class="col-md-11 col-md-offset-1 text-center">
+      <h4>New comment </h4>
+    </div>
+  </div>
+  <div class="row" ng-controller="NewCommentCtrl" >
 
-      <form ng-controller="NewCommentCtrl">
-        <div class="col-md-7 col-md-offset-1 new-comment-input">
-          <input type='text' ng-model='newComment.text' class="form-control" placeholder="Start typing here to create a comment..." required />
+      <form >
+
+        <div class="col-md-9 col-md-offset-1 new-comment-input">
+          <input type='text' ng-model='newComment.text' class="form-control" placeholder="Start typing here to create a comment..." required ></input>
         </div>
         <div class="col-md-2">
-          <input type='submit' ng-click='addComment(newComment)' value='Add comment' class="btn comment"></input>
+          <input type='submit' ng-click='addComment(newComment)' value='Add comment' class="btn btn-primary"></input>
         </div>
       </form>
 
-    </div>
+  </div>
+
   </div>
 </div>
 
-
-
-
-
-
-  </div>
 </div>
 
   <div class="row">

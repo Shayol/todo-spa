@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :find_task, except: [:create, :index]
   def index
+    @tasks = Project.find(params[:project_id]).tasks
     render json: @tasks
   end
 

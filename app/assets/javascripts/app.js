@@ -31,7 +31,6 @@ myApp.config(function(RestangularProvider) {
       var extractedData;
       if (operation === "getList") {
         extractedData = data.projects;
-        if (!extractedData) extractedData = data.tasks;
       } else {
         extractedData = data;
       }
@@ -97,8 +96,8 @@ $scope.removeProject = function() {
 
   $scope.tasks = $scope.project.tasks;
 
-  refreshTasks = function() {
-    $scope.tasks = $scope.project.all("tasks").getList().$object;
+  $scope.refreshTasks = function() {
+    $scope.tasks = Restangular.one("projects", $scope.project.id).all("tasks").getList().$object; // why nulll
   };
 
   $scope.addTask = function(newTask) {
@@ -107,8 +106,7 @@ $scope.removeProject = function() {
       // $scope.projects[$scope.projects.indexOf(project)].tasks.push($scope.copyNewTask);
       // $scope.newTask = {};
       // $scope.copyNewTask = null;
-     // refreshTasks();
-     // $scope.tasks.push(task);
+      $scope.refreshTasks();
     });
   };
 
@@ -121,6 +119,10 @@ myApp.controller('TaskCtrl', function($scope, Restangular) {
 
   $scope.comments = $scope.task.comments;
   $scope.toggleComments = false;
+
+  $scope.refreshComments = function () {
+    $scope.comments = Restangular.one("tasks", $scope.task.id).all("comments").getList().$object;
+  };
 
   $scope.toggleDone = function(task) {
     task.done = task.done === false ? true : false;
@@ -150,6 +152,10 @@ myApp.controller('CommentCtrl', function($scope, Restangular) {
       // var project_index = $scope.projects.indexOf($scope.project);
       // var index = $scope.projects[project_index].tasks.indexOf(task);
       // if (index > -1) $scope.projects[project_index].tasks.splice(index, 1);
+      // var project_index = $scope.projects.indexOf($scope.project);
+      // var task_index = $scope.projects[project_index].tasks.indexOf($scope.task);
+      // var index = $scope.projects[project_index].tasks[task_index].indexOf($scope.comment);
+      // if (index > -1) $scope.projects[project_index].tasks[task_index].comments.splice(index, 1);
     });
   };
 
@@ -163,13 +169,14 @@ myApp.controller('CommentCtrl', function($scope, Restangular) {
 myApp.controller('NewCommentCtrl', function($scope, Restangular) {
 
 $scope.addComment = function(newComment) {
-    $scope.task.all("comments").post(newComment).then(function(){
-      // $scope.copyNewTask = angular.copy(newTask)
-      // $scope.projects[$scope.projects.indexOf(project)].tasks.push($scope.copyNewTask);
-      // $scope.newTask = {};
-      // $scope.copyNewTask = null;
-     // refreshTasks();
-     // $scope.tasks.push(task);
+    Restangular.one("tasks", $scope.task.id).all("comments").post(newComment).then(function(){
+    //   // $scope.copyNewTask = angular.copy(newTask)
+    //   // $scope.projects[$scope.projects.indexOf(project)].tasks.push($scope.copyNewTask);
+    //   // $scope.newTask = {};
+    //   // $scope.copyNewTask = null;
+    //  // refreshTasks();
+    //  // $scope.tasks.push(task);
+    $scope.$parent.refreshComments();
     });
   };
 

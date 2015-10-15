@@ -120,10 +120,6 @@ form[id*='edit_project'] div[class*='col-'] {
   }
 }
 
-.task-deadline {
-  font-size: 10px;
-  max-width: 40px;
-}
 
 .new-task-input input[type="text"] {
   height: 30px;
@@ -149,12 +145,6 @@ form[id*='edit_project'] div[class*='col-'] {
 
 // Task -- row
 
-.deadline-formatted {
-  border-radius: 5px;
-  background: #ffff66;
-  text-align: right;
-}
-
 div[id*='task_row'] .fa-pencil {
   border-right: 1px solid #999;
   padding-right: 5px;
@@ -166,6 +156,8 @@ div[id*='task_row'] .fa-pencil {
 
 div[id*='task_row'] [class*='col-'] {
   background: #fff;
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 
 // Grid -- Project Borders
