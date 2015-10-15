@@ -92,11 +92,9 @@ $scope.removeProject = function() {
 
   $scope.addTask = function(newTask) {
     $scope.project.all("tasks").post(newTask).then(function(task){
-      // $scope.copyNewTask = angular.copy(newTask)
-      // $scope.projects[$scope.projects.indexOf(project)].tasks.push($scope.copyNewTask);
-      // $scope.newTask = {};
-      // $scope.copyNewTask = null;
-      $scope.refreshTasks();
+      //task.done = false;
+      $scope.tasks.push(task);
+      //$scope.refreshTasks();
     });
   };
 
@@ -153,9 +151,9 @@ myApp.controller('CommentCtrl', function($scope, Restangular) {
 myApp.controller('NewCommentCtrl', function($scope, Restangular) {
 
 $scope.addComment = function(newComment) {
-    Restangular.one("tasks", $scope.task.id).all("comments").post(newComment).then(function(){
-    // $scope.tasks.push(task);
-    $scope.$parent.refreshComments();
+    Restangular.one("tasks", $scope.task.id).all("comments").post(newComment).then(function(comment){
+    $scope.comments.push(comment);
+    //$scope.$parent.refreshComments();
     });
   };
 
