@@ -16,11 +16,6 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: "assets/templates/new_project.html",
       controller: "NewProjectCtrl"
     });
-    // .state('/projects.new_task', {
-    //   url: "/projects/:id/tasks/new",
-    //   templateUrl: "assets/templates/new_task.html",
-    //   controller: "ProjectsCtrl"
-    // });
 });
 
 myApp.config(function(RestangularProvider) {
