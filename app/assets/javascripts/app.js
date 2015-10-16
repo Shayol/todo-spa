@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ng-rails-csrf', 'ng-token-auth', 'templates', 'restangular', 'ui.router', 'xeditable', 'ui.bootstrap']);
+var myApp = angular.module('myApp', ['ng-rails-csrf', 'ng-token-auth', 'templates', 'restangular', 'ui.router', 'xeditable', 'ui.bootstrap', 'angularFileUpload']);
 
 myApp.config(function($stateProvider, $urlRouterProvider) {
   //
@@ -116,7 +116,7 @@ myApp.controller('TaskCtrl', function($scope, Restangular) {
 
 });
 
-myApp.controller('CommentCtrl', function($scope, Restangular) {
+myApp.controller('CommentCtrl', function($scope, Restangular, FileUploader) {
 
 
   $scope.removeComment = function(comment) {
@@ -131,15 +131,17 @@ myApp.controller('CommentCtrl', function($scope, Restangular) {
     });
   };
 
+  $scope.uploader = new FileUploader({url: 'api/comments/' + $scope.comment.id + '/attachments.json'});
+
 });
 
 myApp.controller('NewCommentCtrl', function($scope, Restangular) {
 
-$scope.addComment = function(newComment) {
-    Restangular.one("tasks", $scope.task.id).all("comments").post(newComment).then(function(comment){
-    $scope.comments.push(comment);
-    //$scope.$parent.refreshComments();
-    });
-  };
+  $scope.addComment = function(newComment) {
+      Restangular.one("tasks", $scope.task.id).all("comments").post(newComment).then(function(comment){
+      $scope.comments.push(comment);
+      //$scope.$parent.refreshComments();
+      });
+    };
 
   });

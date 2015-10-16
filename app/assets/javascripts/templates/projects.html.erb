@@ -55,6 +55,15 @@
         {{comment.text }}
       </a>
     </div>
+    <div class="row">
+    <input type="file" nv-file-select uploader="uploader"/><br/>
+        <ul>
+            <li ng-repeat="item in uploader.queue">
+                <span ng-bind="item.file.name"></span><br/>
+                <button ng-click="item.upload()">upload</button>
+            </li>
+        </ul>
+    </div>
     <div class="col-md-2 text-center">
       <i class="fa fa-trash" ng-click='removeComment(comment)'></i>
     </div>
@@ -67,8 +76,7 @@
   <div class="row" ng-controller="NewCommentCtrl" >
 
       <form >
-
-        <div class="col-md-9 col-md-offset-1 new-comment-input">
+        <div class="col-md-11 col-md-offset-1 new-comment-input">
           <input type='text' ng-model='newComment.text' class="form-control" placeholder="Start typing here to create a comment..." required ></input>
         </div>
         <div class="col-md-2">

@@ -18,6 +18,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-angular-ui-router'
   gem 'rails-assets-angular-xeditable'
   gem 'rails-assets-angular-bootstrap'
+  gem 'rails-assets-angular-file-upload'
 end
 gem 'angular-rails-templates'
 gem 'sprockets'

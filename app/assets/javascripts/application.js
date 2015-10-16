@@ -23,5 +23,6 @@
 //= require ng-token-auth
 //= require angular-xeditable
 //= require angular-bootstrap
+//= require angular-file-upload
 //= require_tree ./templates
 //= require_tree .
