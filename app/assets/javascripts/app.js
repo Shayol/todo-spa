@@ -1,11 +1,22 @@
 var myApp = angular.module('myApp', ['ng-rails-csrf', 'ng-token-auth', 'templates', 'restangular', 'ui.router', 'xeditable', 'ui.bootstrap', 'angularFileUpload']);
 
+myApp.config(function($authProvider) {
+        $authProvider.configure({
+            apiUrl: ""
+        });
+});
 myApp.config(function($stateProvider, $urlRouterProvider) {
   //
   // For any unmatched url, redirect to /state1
-  $urlRouterProvider.otherwise("/projects");
+  $urlRouterProvider.otherwise("/login");
 
   $stateProvider
+
+    .state('/login', {
+      url: "/sign-in",
+      templateUrl: "assets/templates/login.html",
+      controller: "LoginCtrl"
+    })
     .state('/projects', {
       url: "/projects",
       templateUrl: "assets/templates/projects.html.erb",
@@ -145,3 +156,16 @@ myApp.controller('NewCommentCtrl', function($scope, Restangular) {
     };
 
   });
+
+myApp.controller('LoginCtrl', function($scope, $auth, $state) {
+  $scope.login = function() {
+      $auth.submitLogin($scope.loginForm)
+        .then(function(resp) {
+          // handle success response
+          $state.go("/prjects");
+        })
+        .catch(function(resp) {
+          // handle error response
+        });
+    };
+});
