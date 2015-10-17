@@ -4,5 +4,5 @@ CarrierWave.configure do |config|
   config.dropbox_access_token = ENV["dropbox_access_token"]
   config.dropbox_access_token_secret = ENV["dropbox_access_token_secret"]
   config.dropbox_user_id = ENV["dropbox_user_id"]
-  config.dropbox_access_type = "dropbox"
+  config.dropbox_access_type = "app_folder"
 end

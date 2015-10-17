@@ -24,6 +24,7 @@
 //= require angular-xeditable
 //= require angular-bootstrap
 //= require angular-file-upload
-
+//= require angular-animate
+//= require angularjs-toaster
 //= require_tree ./templates
 //= require_tree .

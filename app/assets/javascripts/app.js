@@ -1,21 +1,26 @@
-var myApp = angular.module('myApp', ['ng-rails-csrf', 'ng-token-auth', 'templates', 'restangular', 'ui.router', 'xeditable', 'ui.bootstrap', 'angularFileUpload']);
+var myApp = angular.module('myApp', ['toaster', 'ngAnimate', 'ng-rails-csrf', 'ng-token-auth', 'templates', 'restangular', 'ui.router', 'xeditable', 'ui.bootstrap', 'angularFileUpload']);
 
 myApp.config(function($authProvider) {
-        $authProvider.configure({
-            apiUrl: ""
-        });
+  $authProvider.configure({
+      apiUrl: ""
+  });
 });
 myApp.config(function($stateProvider, $urlRouterProvider) {
   //
   // For any unmatched url, redirect to /state1
-  $urlRouterProvider.otherwise("/login");
+  $urlRouterProvider.otherwise("/sign-in");
 
   $stateProvider
 
-    .state('/login', {
+    .state('/sign-in', {
       url: "/sign-in",
       templateUrl: "assets/templates/login.html",
       controller: "LoginCtrl"
+    })
+    .state('/sign-up', {
+      url: "/sign-up",
+      templateUrl: "assets/templates/signup.html",
+      controller: "SignupCtrl"
     })
     .state('/projects', {
       url: "/projects",
@@ -51,7 +56,19 @@ myApp.run(function(editableOptions) {
   editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
 });
 
-myApp.controller('MainCtrl', function($scope, Restangular, $state) {
+myApp.controller('MainCtrl', function($scope, Restangular, $state, toaster, $auth) {
+ $scope.signOut = function() {
+      $auth.signOut()
+        .then(function(resp) {
+          // handle success response
+          $state.go("/projects");
+          toaster.pop('success', "Sign out", "Signed out successfully.");
+        })
+        .catch(function(resp) {
+          // handle error response
+        });
+    };
+
 });
 
 myApp.controller('NewProjectCtrl', function($scope, $state, Restangular) {
@@ -157,15 +174,32 @@ myApp.controller('NewCommentCtrl', function($scope, Restangular) {
 
   });
 
-myApp.controller('LoginCtrl', function($scope, $auth, $state) {
+myApp.controller('LoginCtrl', function($scope, $auth, $state, toaster) {
   $scope.login = function() {
       $auth.submitLogin($scope.loginForm)
         .then(function(resp) {
           // handle success response
-          $state.go("/prjects");
+          $state.go("/projects");
+          toaster.pop('success', "Login", "Successfully logged into todo-spa.");
         })
         .catch(function(resp) {
           // handle error response
+          toaster.pop('error', "Login");
+        });
+    };
+});
+
+myApp.controller('SignupCtrl', function($scope, $auth, $state, toaster) {
+  $scope.signup = function() {
+      $auth.submitRegistration($scope.registrationForm)
+        .then(function(resp) {
+          // handle success response
+          $state.go("/projects");
+          toaster.pop('success', "Signup", "Registration was successfull.");
+        })
+        .catch(function(resp) {
+          // handle error response
+          toaster.pop('error', "Signup");
         });
     };
 });
