@@ -8,8 +8,10 @@
 </head>
 <body>
 <div class="container">
-<button class="btn btn-primary btn-lg" ng-click='signOut()'>Sign out</button>
-<toaster-container></toaster-container>
+<div ng-show="user.signedIn">
+  <button class="btn btn-primary btn-lg" ng-click='signOut()'>Sign out</button>
+</div>
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'time-out': 5000, 'close-button':true}"></toaster-container>
   <%= yield %>
   <div ui-view></div>
 </div>

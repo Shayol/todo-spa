@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['toaster', 'ngAnimate', 'ng-rails-csrf', 'ng-token-auth', 'templates', 'restangular', 'ui.router', 'xeditable', 'ui.bootstrap', 'angularFileUpload']);
+var myApp = angular.module('myApp', ['ngAnimate', 'toaster', 'ng-rails-csrf', 'ng-token-auth', 'templates', 'restangular', 'ui.router', 'xeditable', 'ui.bootstrap', 'angularFileUpload']);
 
 myApp.config(function($authProvider) {
   $authProvider.configure({
@@ -25,12 +25,22 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
     .state('/projects', {
       url: "/projects",
       templateUrl: "assets/templates/projects.html.erb",
-      controller: "ProjectsCtrl"
+      controller: "ProjectsCtrl",
+      resolve: {
+        auth: function($auth) {
+          return $auth.validateUser();
+        }
+      }
     })
     .state('/new_project', {
       url: "/projects/new",
       templateUrl: "assets/templates/new_project.html",
-      controller: "NewProjectCtrl"
+      controller: "NewProjectCtrl",
+      resolve: {
+        auth: function($auth) {
+          return $auth.validateUser();
+        }
+      }
     });
 });
 
@@ -57,17 +67,38 @@ myApp.run(function(editableOptions) {
 });
 
 myApp.controller('MainCtrl', function($scope, Restangular, $state, toaster, $auth) {
- $scope.signOut = function() {
-      $auth.signOut()
-        .then(function(resp) {
-          // handle success response
-          $state.go("/projects");
-          toaster.pop('success', "Sign out", "Signed out successfully.");
-        })
-        .catch(function(resp) {
-          // handle error response
-        });
+  $scope.signOut = function() {
+      $auth.signOut();
     };
+
+  $scope.$on('auth:logout-success', function(ev) {
+    $state.go("/sign-in");
+    toaster.success("Sign out", "Signed out successfully.");
+  });
+
+  $scope.$on('auth:logout-error', function(ev, reason) {
+    toaster.error("Sign out", "Logout failed because of " + reason.errors[0]);
+});
+  $scope.$on('auth:login-success', function(ev, user) {
+    $state.go("/projects");
+    toaster.success("Login", "Successfully logged in via email.");
+  });
+
+  $scope.$on('auth:login-error', function(ev, reason) {
+    toaster.error("Authentication error", "Authentication failed because of " + reason.errors[0]);
+  });
+
+  $scope.$on('auth:validation-error', function(ev, reason) {
+    $state.go("/sign-in");
+    toaster.error("Validation error", "Error in the validation process.");
+  });
+
+  $scope.$on('auth:invalid', function(ev, reason) {
+    $state.go("/sign-in");
+    toaster.error("Validation error", "Invalid token.");
+});
+
+
 
 });
 
@@ -176,30 +207,12 @@ myApp.controller('NewCommentCtrl', function($scope, Restangular) {
 
 myApp.controller('LoginCtrl', function($scope, $auth, $state, toaster) {
   $scope.login = function() {
-      $auth.submitLogin($scope.loginForm)
-        .then(function(resp) {
-          // handle success response
-          $state.go("/projects");
-          toaster.pop('success', "Login", "Successfully logged into todo-spa.");
-        })
-        .catch(function(resp) {
-          // handle error response
-          toaster.pop('error', "Login");
-        });
+      $auth.submitLogin($scope.loginForm);
     };
 });
 
 myApp.controller('SignupCtrl', function($scope, $auth, $state, toaster) {
   $scope.signup = function() {
-      $auth.submitRegistration($scope.registrationForm)
-        .then(function(resp) {
-          // handle success response
-          $state.go("/projects");
-          toaster.pop('success', "Signup", "Registration was successfull.");
-        })
-        .catch(function(resp) {
-          // handle error response
-          toaster.pop('error', "Signup");
-        });
+      $auth.submitRegistration($scope.registrationForm);
     };
 });
