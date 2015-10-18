@@ -1,14 +1,9 @@
 class CommentsController < ApplicationController
-  before_action :find_comment, except: [:create, :index]
+  load_and_authorize_resource :task
+  load_and_authorize_resource through: :task, shallow: true
 
   def index
-    @task = Task.find(params[:task_id])
-    @comments = @task.comments
     render json: @comments
-  end
-
-  def show
-    render json: @comment
   end
 
   def update
@@ -17,9 +12,8 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @task = Task.find(params[:task_id])
-    comment = @task.comments.create(comment_params)
-    redirect_to comment_path(comment, format: :json) ## why
+    @comment = @task.comments.create(comment_params)
+    render json: @comment
   end
 
   def destroy
@@ -29,10 +23,7 @@ class CommentsController < ApplicationController
 
   private
 
-  def find_comment
-    @comment = Comment.find(params[:id])
-  end
   def comment_params
-    params.require(:comment).permit(:text, :id, :task_id)  ## how without id ????
+    params.require(:comment).permit(:text, :task_id)
   end
 end

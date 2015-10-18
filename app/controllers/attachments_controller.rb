@@ -1,8 +1,8 @@
 class AttachmentsController < ApplicationController
-  before_action :find_comment
+  load_and_authorize_resource :comment
+  load_and_authorize_resource through: :comment
 
   def index
-    @attachments = @comment.attachments.all
     render json: @attachments
   end
 
@@ -11,8 +11,4 @@ class AttachmentsController < ApplicationController
     render json: attachment
   end
 
-  private
-  def find_comment
-    @comment = Comment.find(params[:comment_id])
-  end
 end

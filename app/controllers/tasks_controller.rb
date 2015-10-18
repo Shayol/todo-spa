@@ -1,12 +1,9 @@
 class TasksController < ApplicationController
-  before_action :find_task, except: [:create, :index]
-  def index
-    @tasks = Project.find(params[:project_id]).tasks
-    render json: @tasks
-  end
+  load_and_authorize_resource :project
+  load_and_authorize_resource through: :project, shallow: true
 
-  def show
-    render json: @task
+  def index
+    render json: @tasks
   end
 
   def update
@@ -15,7 +12,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Project.find(params[:project_id]).tasks.create(task_params)
+    @task = @project.create(task_params)
     render json: @task
   end
 
@@ -25,10 +22,7 @@ class TasksController < ApplicationController
   end
 
   private
-  def find_task
-    @task = Task.find(params[:id])
-  end
   def task_params
-    params.require(:task).permit(:title, :position, :project_id, :done, :deadline, :id)
+    params.require(:task).permit(:title, :position, :project_id, :done, :deadline)
   end
 end
