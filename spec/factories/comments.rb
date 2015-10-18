@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :comment do
-    text "MyText"
-task nil
+    text { Faker::Lorem.sentence }
+    task
   end
 
 end

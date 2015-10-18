@@ -1,8 +1,9 @@
 FactoryGirl.define do
   factory :project do
-    title "MyText"
-position 1
-user nil
+    title { Faker::Lorem.sentence }
+    user
   end
+
+end
 
 end

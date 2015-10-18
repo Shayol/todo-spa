@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :attachment do
-    comment nil
-file "MyString"
+    file { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'files', 'flower.jpg')) }
+    comment
   end
 
 end
