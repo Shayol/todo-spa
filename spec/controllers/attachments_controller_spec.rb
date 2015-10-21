@@ -22,10 +22,10 @@ RSpec.describe AttachmentsController, type: :controller do
 	     expect(assigns(:attachments)).not_to be_nil
 	   end
 
-    #it "POST #create creates new attachment" do
-      #post :create, format: :json, comment_id: comment.id, file: @file
-      #expect(Attachment.count).to be 1
-    #end
+    it "POST #create creates new attachment" do
+      post :create, format: :json, comment_id: comment.id, file: @file
+      expect(Attachment.count).to be 1
+    end
   end
 
   describe "With permission from cancan" do
@@ -33,7 +33,7 @@ RSpec.describe AttachmentsController, type: :controller do
   	before(:each) do
   		@ability.cannot :manage, :all
   	end
-  	
+
 	   context "GET #index cannot get @attachments" do
       before do
         get :index, format: :json, comment_id: comment.id
