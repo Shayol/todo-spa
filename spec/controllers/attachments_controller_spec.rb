@@ -41,6 +41,13 @@ RSpec.describe AttachmentsController, type: :controller do
       it { expect(response).to be_forbidden }
     end
 
+    context "POST #create cannot upload files" do
+      before do
+        post :create, format: :json, comment_id: comment.id, file: @file
+      end
+      it { expect(response).to be_forbidden }
+    end
+
 	 end
 
 end

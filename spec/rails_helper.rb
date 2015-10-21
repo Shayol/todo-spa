@@ -35,7 +35,7 @@ RSpec.configure do |config|
 
   config.include FactoryGirl::Syntax::Methods
 
-config.extend ControllerMacros, :type => :controller
+  config.extend ControllerMacros, :type => :controller
   config.include Devise::TestHelpers, type: :controller
 
   config.include Warden::Test::Helpers
@@ -58,6 +58,12 @@ config.extend ControllerMacros, :type => :controller
 
   config.after(:each) do
     DatabaseCleaner.clean
+  end
+
+  config.after(:each) do
+    if Rails.env.test? || Rails.env.cucumber?
+      FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads/test_files"])
+    end 
   end
 
   # RSpec Rails can automatically mix in different behaviours to your tests

@@ -7,15 +7,23 @@ class FileUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  if Rails.env.test? or Rails.env.development?
+  if Rails.env.development?
     storage :file
+    def store_dir
+     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    end
+  elsif Rails.env.test? 
+    def store_dir
+     "uploads/test_files/#{model.id}"
+    end
   else
     storage :dropbox
+    def store_dir
+      "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    end
   end
 
-def store_dir
-  "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-end
+
 
   
 
