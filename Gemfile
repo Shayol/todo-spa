@@ -25,7 +25,7 @@ end
 gem 'angular-rails-templates'
 gem 'sprockets'
 gem 'devise_token_auth', git: "https://github.com/lynndylanhurley/devise_token_auth.git"
-gem 'ng-rails-csrf'
+#gem 'ng-rails-csrf'
 gem 'angular_rails_csrf'
 gem 'cancancan', '~> 1.10'
 gem 'omniauth-facebook'

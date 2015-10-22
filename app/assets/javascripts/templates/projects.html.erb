@@ -34,8 +34,8 @@
     <div class="row" >
       <div class="col-md-2 col-md-offset-1">
         <input type="checkbox" ng-checked="task.done" ng-click="toggleDone(task)"></input>
-        <a href="#" editable-bsdate="task.deadline" e-datepicker-popup="dd-MMMM-yyyy">
-          {{ (task.deadline | date:"dd/MM/yyyy") || 'empty' }}
+        <a href="#" onshow="createDate(task)" editable-bsdate="task.deadline" onaftersave="updateTask(task)">
+          {{ (task.deadline | date:"dd/MM") || 'deadline' }}
         </a>
       </div>
       <div class="col-md-7" editable-text='task.title' onaftersave="updateTask(task)">
@@ -54,9 +54,7 @@
       <a href="#" editable-text='comment.text' onaftersave="updateComment(comment)">
         {{comment.text }}
       </a>
-    </div>
-    <div class="row">
-    <input type="file" nv-file-select uploader="uploader"/><br/>
+      <input type="file" nv-file-select uploader="uploader"/><br/>
         <ul>
             <li ng-repeat="item in uploader.queue">
                 <span ng-bind="item.file.name"></span><br/>

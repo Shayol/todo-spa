@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngAnimate', 'toaster', 'ng-rails-csrf', 'ng-token-auth', 'templates', 'restangular', 'ui.router', 'xeditable', 'ui.bootstrap', 'angularFileUpload']);
+var myApp = angular.module('myApp', ['ngAnimate', 'toaster', 'ng-token-auth', 'templates', 'restangular', 'ui.router', 'xeditable', 'ui.bootstrap', 'angularFileUpload']);
 
 myApp.config(function($authProvider) {
   $authProvider.configure({
@@ -62,7 +62,12 @@ myApp.config(function(RestangularProvider) {
 // });
 });
 
-myApp.run(function(editableOptions) {
+myApp.run(function(editableOptions, editableThemes, $auth, $state) {
+  $auth.validateUser().then(function(){ 
+    $state.go('/projects');
+  });
+  //editableThemes.bs3.inputClass = 'input-sm';
+  //editableThemes.bs3.buttonsClass = 'btn-sm';
   editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
 });
 
@@ -147,7 +152,7 @@ $scope.removeProject = function() {
 
 
 
-myApp.controller('TaskCtrl', function($scope, Restangular) {
+myApp.controller('TaskCtrl', function($scope, $filter, Restangular) {
 
   $scope.comments = $scope.task.comments;
   $scope.toggleComments = false;
@@ -173,6 +178,14 @@ myApp.controller('TaskCtrl', function($scope, Restangular) {
     });
   };
 
+  if ($scope.task.deadline) $scope.task.deadline = new Date($scope.task.deadline);
+  $scope.createDate = function(task){
+    if ($scope.task.deadline === false ) { 
+      task.deadline = new Date();
+      //task.deadline = date.format("dd/MM");
+      return task.deadline;
+    }
+  };
 });
 
 myApp.controller('CommentCtrl', function($scope, Restangular, FileUploader) {

@@ -12,7 +12,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = @project.create(task_params)
+    @task = @project.tasks.create(task_params)
     render json: @task
   end
 

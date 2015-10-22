@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require angular/angular
 //= require lodash/lodash
-//= require ng-rails-csrf
 //= require bootstrap-sprockets
 //= require angular-ui-router
 //= require restangular

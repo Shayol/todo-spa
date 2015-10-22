@@ -20,10 +20,10 @@ RSpec.describe TasksController, type: :controller do
 	      #expect(assigns(:tasks)).not_to be_nil
 	    #end
 
-    #it "POST #create creates new task" do
-      #post :create, format: :json, project_id: project.id, task: task_attr
-      #expect(Task.where(title: task_attr[:title]).count).to be 1
-    #end
+    it "POST #create creates new task" do
+      post :create, format: :json, project_id: project.id, task: task_attr
+      expect(Task.where(title: task_attr[:title]).count).to be 1
+    end
 
     it "PATCH #update changes task" do
       patch :update, format: :json, id: task.id, task: task_attr
@@ -50,12 +50,12 @@ RSpec.describe TasksController, type: :controller do
       #it { expect(response).to be_forbidden }
     #end
 
-    #context "POST #create cannot create task" do
-      #before do
-        #post :create, format: :json, task: task_attr
-      #end
-      #it { expect(response).to be_forbidden }
-    #end
+    context "POST #create cannot create task" do
+      before do
+        post :create, format: :json, project_id: project.id, task: task_attr
+      end
+      it { expect(response).to be_forbidden }
+    end
 
     context "PATCH #update cannot change task" do
       before do
