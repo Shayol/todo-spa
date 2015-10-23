@@ -93,6 +93,15 @@ myApp.controller('MainCtrl', function($scope, Restangular, $state, toaster, $aut
     toaster.error("Authentication error", "Authentication failed because of " + reason.errors[0]);
   });
 
+  $scope.$on('auth:registration-email-error', function(ev, reason) {
+    toaster.error("Sign in via email error", "Authentication failed because of " + reason.errors[0]);
+  });
+
+  $scope.$on('auth:registration-email-success', function(ev, message) {
+    state.go("/projects");
+    toaster.success("Signup", "Successfully signed up in via email.");
+  });
+
   $scope.$on('auth:oauth-registration', function(ev, user) {
     state.go("/projects");
     toaster.success("Signup", "Successfully signed up in via facebook.");
