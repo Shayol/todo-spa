@@ -86,12 +86,17 @@ myApp.controller('MainCtrl', function($scope, Restangular, $state, toaster, $aut
 });
   $scope.$on('auth:login-success', function(ev, user) {
     $state.go("/projects");
-    toaster.success("Login", "Successfully logged in via email.");
+    toaster.success("Login", "Successfully logged in.");
   });
 
   $scope.$on('auth:login-error', function(ev, reason) {
     toaster.error("Authentication error", "Authentication failed because of " + reason.errors[0]);
   });
+
+  $scope.$on('auth:oauth-registration', function(ev, user) {
+    state.go("/projects");
+    toaster.success("Signup", "Successfully signed up in via facebook.");
+});
 
   $scope.$on('auth:validation-error', function(ev, reason) {
     $state.go("/sign-in");

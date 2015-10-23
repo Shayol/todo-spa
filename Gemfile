@@ -24,7 +24,7 @@ source 'https://rails-assets.org' do
 end
 gem 'angular-rails-templates'
 gem 'sprockets'
-gem 'devise_token_auth', git: "https://github.com/lynndylanhurley/devise_token_auth.git"
+gem "devise_token_auth", ">= 0.1.32.beta9"
 #gem 'ng-rails-csrf'
 gem 'angular_rails_csrf'
 gem 'cancancan', '~> 1.10'
