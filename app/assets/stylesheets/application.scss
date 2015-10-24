@@ -74,48 +74,13 @@ footer {
     padding-right: 20px;
     font-size: 15px;
   }
-  .fa-pencil {
-    border-right: 1px solid #fff;
-    padding-right: 5px;
-    margin-right: 0px;
-    color: #fff;
-  }
   .fa-trash {
     color: #fff;
   }
 
 }
 
-// Project -- Header -- Edit form
-form[id*='edit_project'] div[class*='col-'] {
-  height: 50px;
-  padding-top: 7px;
-  &:not(:first-child) {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-  #project_title, .btn[value='Edit'] {
-    width: 100%;
-  }
-}
 
-// Project -- Create
-
-.new_project {
-  width: 500px;
-  background-color: #F88379;
-  color: #475885;
-  padding: 30px;
-
-  h3 {
-  text-align: center;
-  }
-
-  input {
-  margin-top: 30px;
-  margin-bottom: 30px;
-  }
-}
 
 // Task -- New task form
 
@@ -141,27 +106,8 @@ form[id*='edit_project'] div[class*='col-'] {
   outline: none;
 }
 
-// Task -- Edit form
-
-.edit-task div[class*='col-'] {
-  height: 50px;
-  padding: 8px 0 10px 10px;
-  &:last-child {
-    padding-left: 0px;
-    padding-right: 7px;
-  }
-}
 
 // Task -- row
-
-div[id*='task_row'] .fa-pencil {
-  border-right: 1px solid #999;
-  padding-right: 5px;
-  margin-right: 0px;
-  border-left: 1px solid #999;
-  padding-left: 5px;
-  margin-left: 0px;
-}
 
 div[id*='task_row'] [class*='col-'] {
   background: #fff;
@@ -197,9 +143,6 @@ div.project .row > [class*='col-'] {
     + [class*='col-'] {
       border-left: 0;
     }
-  }
-  &.edit_project {
-    border-top: 0;
   }
   &.new-task-input {
     border-left: 0;
@@ -249,3 +192,35 @@ div.project .row:hover i:not(#checkbox):not(.fa-calendar) {
       background: linear-gradient(to bottom, #5689b6 0%,#335791 100%);
       margin-bottom: 40px;
     }
+
+.block-form {
+  width: 500px;
+  padding: 30px;
+  margin: 40px;
+  h3 {
+    text-align: center;
+  }
+}
+
+// Sign-in 
+
+.sign-in .block-form {
+  background-color: #FCFBE3;
+  button {
+    margin-bottom: 30px;
+  }
+}
+
+// Project -- Create
+
+.new_project {
+  background-color: #F88379;
+  color: #475885;
+
+  input {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  }
+}
+
+

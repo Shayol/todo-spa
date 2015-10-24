@@ -7,7 +7,6 @@
   <div class="col-md-7 project-title" editable-text='project.title' onaftersave="updateProject()">{{ project.title }}
   </div>
   <div class="col-md-2">
-      <i class="fa fa-pencil"></i>
       <i class="fa fa-trash" ng-click='removeProject(project)'></i>
   </div>
 </div>
@@ -33,12 +32,12 @@
 
     <div class="row" >
       <div class="col-md-2 col-md-offset-1">
-        <input type="checkbox" ng-checked="task.done" ng-click="toggleDone(task)"></input>
+        <input name="Done" type="checkbox" ng-checked="task.done" ng-click="toggleDone(task)"></input>
         <a href="#" onshow="createDate(task)" editable-bsdate="task.deadline" onaftersave="updateTask(task)">
           {{ (task.deadline | date:"dd/MM") || 'deadline' }}
         </a>
       </div>
-      <div class="col-md-7" editable-text='task.title' onaftersave="updateTask(task)">
+      <div class="col-md-7 task-title" editable-text='task.title' onaftersave="updateTask(task)">
           {{task.title }}
       </div>
       <div class="col-md-2 text-center">
@@ -92,7 +91,7 @@
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <a ui-sref='/new_project' id="new_project_link" name="new_project_link" class="btn project" >
-        <i class="fa fa-plus" ></i> Add TODO list
+        <i class="fa fa-plus" ></i> Add TODO project
       </a>
     </div>
   </div>
