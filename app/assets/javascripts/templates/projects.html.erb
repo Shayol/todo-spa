@@ -32,7 +32,7 @@
 
     <div class="row" >
       <div class="col-md-2 col-md-offset-1">
-        <input name="Done" type="checkbox" ng-checked="task.done" ng-click="toggleDone(task)"></input>
+        <input name="Done" type="checkbox" class="Done" ng-checked="task.done" ng-click="toggleDone(task)"></input>
         <a href="#" onshow="createDate(task)" editable-bsdate="task.deadline" onaftersave="updateTask(task)">
           {{ (task.deadline | date:"dd/MM") || 'deadline' }}
         </a>
@@ -53,6 +53,11 @@
       <a href="#" editable-text='comment.text' onaftersave="updateComment(comment)">
         {{comment.text }}
       </a>
+      <ul class="attachments-loaded">
+        <li ng-repeat="item in comment.attachments">
+          <a href="{{item.url}}">{{item.url}}</a>
+        </li>
+      </ul>
       <input type="file" nv-file-select uploader="uploader"/><br/>
         <ul>
             <li ng-repeat="item in uploader.queue">
@@ -62,7 +67,7 @@
         </ul>
     </div>
     <div class="col-md-2 text-center">
-      <i class="fa fa-trash" ng-click='removeComment(comment)'></i>
+      <i class="fa fa-times" ng-click='removeComment(comment)'></i>
     </div>
   </div>
   <div class="row">
