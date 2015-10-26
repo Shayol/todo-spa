@@ -223,4 +223,13 @@ div.project .row:hover i:not(#checkbox):not(.fa-calendar) {
   }
 }
 
+.comment-row {
+    display: table;
+}
+
+.comment-row .comment-body {
+    float: none;
+    display: table-cell;
+    vertical-align: top;
+}
 

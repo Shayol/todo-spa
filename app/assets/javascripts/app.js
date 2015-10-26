@@ -25,7 +25,7 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
     .state('/projects', {
       url: "/projects",
       templateUrl: "assets/templates/projects.html.erb",
-      controller: "ProjectsCtrl",
+      controller: "MainCtrl",
       resolve: {
         auth: function($auth) {
           return $auth.validateUser();
@@ -71,7 +71,27 @@ myApp.run(function(editableOptions, editableThemes, $auth, $state) {
   editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
 });
 
+myApp.directive('task', function() {
+  return {
+    templateUrl: "assets/templates/_task.html"
+  };
+});
+
+myApp.directive('comment', function() {
+  return {
+    templateUrl: "assets/templates/_comment.html"
+  };
+});
+
+//myApp.directive('newComment', function() {
+  //return {
+    //templateUrl: "assets/templates/_newComment.html"
+  //};
+//});
+
 myApp.controller('MainCtrl', function($scope, Restangular, $state, toaster, $auth) {
+  $scope.projects = Restangular.all('projects').getList().$object;
+
   $scope.signOut = function() {
       $auth.signOut();
     };
@@ -128,12 +148,6 @@ myApp.controller('NewProjectCtrl', function($scope, $state, Restangular) {
   };
 });
 
-
-
-myApp.controller('ProjectsCtrl', function($scope, Restangular) {
-  $scope.projects = Restangular.all('projects').getList().$object;
-
-});
 
 myApp.controller('ProjectCtrl', function($scope, Restangular) {
 $scope.removeProject = function() {
