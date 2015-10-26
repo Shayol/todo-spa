@@ -44,6 +44,7 @@ group :development, :test do
   # gem "binding_of_caller"
   # gem "better_errors"
   # gem 'fuubar'
+  gem 'pry'
   gem 'database_cleaner'
   # gem "teaspoon-jasmine"
   # gem 'phantomjs'

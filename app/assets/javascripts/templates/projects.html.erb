@@ -28,7 +28,7 @@
 </form>
 
 
-<div id="task_row_{{ task.id }}" ng-controller="TaskCtrl" ng-repeat="task in tasks">
+<div ng-controller="TaskCtrl" ng-repeat="task in tasks" id="task_row_{{ task.id }}">
 
     <div class="row" >
       <div class="col-md-2 col-md-offset-1">
@@ -40,7 +40,7 @@
       <div class="col-md-7 task-title" editable-text='task.title' onaftersave="updateTask(task)">
           {{task.title }}
       </div>
-      <div class="col-md-2 text-center">
+      <div class="col-md-2 text-center task-buttons">
         <i class="fa fa-comment" ng-click='toggleComments= !toggleComments'></i>
         <i class="fa fa-trash" ng-click='removeTask(task)'></i>
       </div>
@@ -55,7 +55,7 @@
       </a>
       <ul class="attachments-loaded">
         <li ng-repeat="item in comment.attachments">
-          <a href="{{item.url}}">{{item.url}}</a>
+          <a href="{{item.file.url}}">{{item.file.url}}</a>
         </li>
       </ul>
       <input type="file" nv-file-select uploader="uploader"/><br/>

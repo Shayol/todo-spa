@@ -63,8 +63,12 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
+  config.after :each do
+    Warden.test_reset!
+  end
+
   config.after(:each) do
-    if Rails.env.test? || Rails.env.cucumber?
+    if Rails.env.test? 
       FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads/test_files"])
     end 
   end
