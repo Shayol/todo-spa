@@ -66,8 +66,10 @@ footer {
   padding: 10px 0 12px 12px;
   background: linear-gradient(to bottom, #5689b6 0%,#335791 100%);
   &.project-title {
+    div {
     color: white;
     font-size: 22px;
+    }
   }
   &:last-child {
     text-align: right;
@@ -162,8 +164,14 @@ div[id*='task_row'] .row:hover > [class*='col-'] {
   background-color: #FFF6EC;
 }
 
-div.project .row:hover i:not(#checkbox):not(.fa-calendar) {
+div.project .row:hover i:not(#checkbox):not(.fa-calendar):not(.fa-times) {
   opacity: 0.8;
+}
+
+.comment-body:hover {
+  i {
+    opacity: 0.8;
+  }  
 }
 
 // Buttons
@@ -223,13 +231,11 @@ div.project .row:hover i:not(#checkbox):not(.fa-calendar) {
   }
 }
 
-.comment-row {
-    display: table;
-}
-
-.comment-row .comment-body {
-    float: none;
-    display: table-cell;
-    vertical-align: top;
+.comment-body {
+  background: #ccc;
+  margin: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
+  border-radius: 5px;
 }
 

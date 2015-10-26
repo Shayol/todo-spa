@@ -3,7 +3,8 @@
   <div class="col-md-2 col-md-offset-1">
     <i class="fa fa-calendar fa-2x"></i>
   </div>
-  <div class="col-md-7 project-title" editable-text='project.title' onaftersave="updateProject()">{{ project.title }}
+  <div class="col-md-7 project-title" >
+    <div editable-text='project.title' onaftersave="updateProject()">{{ project.title }}</div>
   </div>
   <div class="col-md-2">
       <i class="fa fa-trash" ng-click='removeProject(project)'></i>
