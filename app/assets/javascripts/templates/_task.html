@@ -1,0 +1,43 @@
+<div class="row" >
+  <div class="col-md-2 col-md-offset-1">
+    <input name="Done" type="checkbox" class="Done" ng-checked="task.done" ng-click="toggleDone(task)"></input>
+    <a href="#" onshow="createDate(task)" editable-bsdate="task.deadline" onaftersave="updateTask(task)">
+      {{ (task.deadline | date:"dd/MM") || 'deadline' }}
+    </a>
+  </div>
+  <div class="col-md-7 task-title" >
+    <div editable-text='task.title' onaftersave="updateTask(task)">{{task.title }}</div>
+
+      <div class="comments" ng-show="toggleComments">
+
+      <div class="row" ng-controller="CommentCtrl" ng-repeat="comment in comments">
+        <div comment></div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h4>New comment </h4>
+        </div>
+      </div>
+      <div class="row" ng-controller="NewCommentCtrl" >
+       <form >
+          <div class="col-md-11 new-comment-input">
+            <input type='text' ng-model='newComment.text' class="form-control" placeholder="Start typing here to create a comment..." required ></input>
+          </div>
+          <div class="col-md-2">
+            <input type='submit' ng-click='addComment(newComment)' value='Add comment' class="btn btn-primary"></input>
+          </div>
+        </form>
+
+      </div>
+      </div>
+
+  </div>
+  <div class="col-md-2 text-center task-buttons">
+    <i class="fa fa-comment" ng-click='toggleComments= !toggleComments'></i>
+    <i class="fa fa-trash" ng-click='removeTask(task)'></i>
+  </div>
+</div>
+
+
+

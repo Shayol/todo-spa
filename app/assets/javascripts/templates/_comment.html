@@ -1,0 +1,20 @@
+<div class="col-md-6 col-md-offset-1 ">
+  <div class="comment-body">
+  <a href="#" editable-text='comment.text' onaftersave="updateComment(comment)">
+    {{comment.text }}
+  </a>
+  <i class="fa fa-times" ng-click='removeComment(comment)'></i>
+  <ul class="attachments-loaded">
+    <li ng-repeat="item in comment.attachments">
+      <a href="{{item.file.url}}">{{item.file.url}}</a>
+    </li>
+  </ul>
+  <input type="file" nv-file-select uploader="uploader"/><br/>
+    <ul>
+        <li ng-repeat="item in uploader.queue">
+            <span ng-bind="item.file.name"></span><br/>
+            <button ng-click="item.upload()">upload</button>
+        </li>
+    </ul>
+  </div>
+</div>
