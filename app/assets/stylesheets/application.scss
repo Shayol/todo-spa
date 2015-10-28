@@ -120,7 +120,7 @@ div[id*='task_row'] [class*='col-'] {
 // Grid -- Project Borders
 
 
-[id*='task_row']:nth-last-child(1) [class*='col-'] {
+[id*='task_row']:nth-last-child(1) > [class*='col-'] {
   border-bottom: 1px solid #aaa;
   &:first-child {
     border-bottom-left-radius: 10px;
@@ -130,10 +130,13 @@ div[id*='task_row'] [class*='col-'] {
     }
   }
 
-
-div.project .row > [class*='col-'] {
+  .task-row [class*='col-'] {
   border-top: 1px solid #ddd;
   border-left: 1px solid #ddd;
+}
+
+
+div.project [class*='col-'] {
   &:last-child {
     border-right: 1px solid #aaa;
   }
@@ -164,7 +167,7 @@ div[id*='task_row'] .row:hover > [class*='col-'] {
   background-color: #FFF6EC;
 }
 
-div.project .row:hover i:not(#checkbox):not(.fa-calendar):not(.fa-times) {
+div.project .row:hover i:not(#checkbox):not(.fa-calendar) {
   opacity: 0.8;
 }
 
@@ -233,9 +236,12 @@ div.project .row:hover i:not(#checkbox):not(.fa-calendar):not(.fa-times) {
 
 .comment-body {
   background: #ccc;
-  margin: 10px;
+  margin-left: 200px;
+  margin-right: 200px;
   padding-top: 10px;
   padding-left: 10px;
   border-radius: 5px;
 }
+
+
 

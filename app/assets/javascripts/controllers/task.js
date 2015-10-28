@@ -27,6 +27,9 @@ angular.module("myApp")
     });
   };
 
-  if ($scope.task.deadline)  $scope.task.deadline = new Date($scope.task.deadline);
-  if (!$scope.task.deadline) $scope.task.deadline = new Date();
+  $scope.createDate = function() {
+    if (!$scope.task.deadline) return $scope.task.deadline = new Date();
+  };
+
+  if ($scope.task.deadline) $scope.task.deadline = new Date($scope.task.deadline);
 });
