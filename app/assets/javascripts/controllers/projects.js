@@ -28,12 +28,12 @@ angular.module("myApp")
 
 
     $scope.dropCallback = function(event, index, item, external) {
-    console.log(item);
-    console.log(external);
     angular.forEach ($scope.tasks, function(task, place) {
-      task.position = place;
+      task.position = place + 1;
     });
     $scope.updateProject();
+    console.log(item);
+    console.log($scope.tasks[0].id);
     //if(external) $scope.updateProject();
     return item;
   };

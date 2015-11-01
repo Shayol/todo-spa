@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20150929105347) do
 
   create_table "tasks", force: :cascade do |t|
     t.text     "title"
-    t.integer  "position"
+    t.integer  "position",   default: 0,     null: false
     t.integer  "project_id"
     t.boolean  "done",       default: false
     t.datetime "deadline"
