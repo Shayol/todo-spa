@@ -1,6 +1,7 @@
 angular.module("myApp")
 
 .controller('MainCtrl', function($scope, Restangular, $state, toaster, $auth) {
+  
   $scope.projects = Restangular.all('projects').getList().$object;
 
   $scope.signOut = function() {

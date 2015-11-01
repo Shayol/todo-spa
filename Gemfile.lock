@@ -179,6 +179,7 @@ GEM
       rails-assets-angular (>= 1.3.0)
     rails-assets-angular-cookie (4.0.9)
       rails-assets-angular
+    rails-assets-angular-drag-and-drop-lists (1.3.0)
     rails-assets-angular-file-upload (2.1.4)
       rails-assets-angular (>= 1.1.5, < 2)
     rails-assets-angular-ui-router (0.2.15)
@@ -304,6 +305,7 @@ DEPENDENCIES
   rails-assets-angular!
   rails-assets-angular-bootstrap!
   rails-assets-angular-cookie!
+  rails-assets-angular-drag-and-drop-lists!
   rails-assets-angular-file-upload!
   rails-assets-angular-ui-router!
   rails-assets-angular-xeditable!

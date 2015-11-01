@@ -1,4 +1,5 @@
-<div ng-controller="TaskCtrl" ng-repeat="task in tasks" id="task_row_{{ task.id }}">
+<div dnd-list="tasks" dnd-drop="dropCallback(event, index, item, external)">
+<div ng-controller="TaskCtrl" ng-repeat="task in tasks" dnd-draggable="task" dnd-moved="tasks.splice($index, 1)" id="task_row_{{ task.id }}">
 <div class="row task-row">
   <div class="col-md-2 col-md-offset-1">
     <input name="Done" type="checkbox" class="Done" ng-checked="task.done" ng-click="toggleDone(task)"></input>
@@ -35,6 +36,7 @@
 </div>
 </div>
 
+</div>
 </div>
 
 

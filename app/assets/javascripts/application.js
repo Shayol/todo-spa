@@ -25,5 +25,6 @@
 //= require angular-file-upload
 //= require angular-animate
 //= require angularjs-toaster
+//= require angular-drag-and-drop-lists
 //= require_tree ./templates
 //= require_tree .

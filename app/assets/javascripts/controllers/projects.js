@@ -27,4 +27,15 @@ angular.module("myApp")
     };
 
 
+    $scope.dropCallback = function(event, index, item, external) {
+    console.log(item);
+    console.log(external);
+    angular.forEach ($scope.tasks, function(task, place) {
+      task.position = place;
+    });
+    $scope.updateProject();
+    //if(external) $scope.updateProject();
+    return item;
+  };
+
   });

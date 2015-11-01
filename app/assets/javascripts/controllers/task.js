@@ -32,4 +32,10 @@ angular.module("myApp")
   };
 
   if ($scope.task.deadline) $scope.task.deadline = new Date($scope.task.deadline);
+
+  $scope.dropCallback = function(event, index, item, external) {
+    console.log(task);
+    return task;
+  };
+
 });

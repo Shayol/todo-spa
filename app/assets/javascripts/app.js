@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngAnimate', 'toaster', 
+var myApp = angular.module('myApp', ['dndLists', 'ngAnimate', 'toaster', 
                                      'ng-token-auth', 'templates', 
                                      'restangular', 'ui.router', 
                                      'xeditable', 'ui.bootstrap', 
