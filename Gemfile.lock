@@ -179,7 +179,6 @@ GEM
       rails-assets-angular (>= 1.3.0)
     rails-assets-angular-cookie (4.0.9)
       rails-assets-angular
-    rails-assets-angular-drag-and-drop-lists (1.3.0)
     rails-assets-angular-file-upload (2.1.4)
       rails-assets-angular (>= 1.1.5, < 2)
     rails-assets-angular-ui-router (0.2.15)
@@ -193,6 +192,8 @@ GEM
     rails-assets-ng-token-auth (0.0.28)
       rails-assets-angular (~> 1.4.4)
       rails-assets-angular-cookie (~> 4.0.9)
+    rails-assets-ngDraggable (0.1.8)
+      rails-assets-angular
     rails-assets-restangular (1.5.1)
       rails-assets-angular (~> 1.0)
       rails-assets-lodash (>= 1.3.0)
@@ -305,13 +306,13 @@ DEPENDENCIES
   rails-assets-angular!
   rails-assets-angular-bootstrap!
   rails-assets-angular-cookie!
-  rails-assets-angular-drag-and-drop-lists!
   rails-assets-angular-file-upload!
   rails-assets-angular-ui-router!
   rails-assets-angular-xeditable!
   rails-assets-angularjs-toaster!
   rails-assets-lodash!
   rails-assets-ng-token-auth!
+  rails-assets-ngDraggable!
   rails-assets-restangular!
   rails_12factor
   rspec-rails (~> 3.0)

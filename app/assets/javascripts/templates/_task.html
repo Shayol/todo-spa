@@ -1,6 +1,6 @@
-<div dnd-list="tasks" dnd-drop="dropCallback(event, index, item, external)">
-<div ng-controller="TaskCtrl" ng-repeat="task in tasks" dnd-draggable="task" dnd-moved="tasks.splice($index, 1)" id="task_row_{{ task.id }}">
-<div class="row task-row">
+
+<div ng-drop="true" ng-drop-success="onDropComplete($index,$data,$event)" ng-controller="TaskCtrl" ng-repeat="task in tasks" id="task_row_{{ task.id }}">
+<div class="row task-row" ng-drag="true" ng-drag-data="task" >
   <div class="col-md-2 col-md-offset-1">
     <input name="Done" type="checkbox" class="Done" ng-checked="task.done" ng-click="toggleDone(task)"></input>
     <span onshow="createDate()" editable-bsdate="task.deadline" onaftersave="updateTask(task)">
@@ -37,7 +37,7 @@
 </div>
 
 </div>
-</div>
+
 
 
 

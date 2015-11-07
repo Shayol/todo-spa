@@ -33,9 +33,18 @@ angular.module("myApp")
 
   if ($scope.task.deadline) $scope.task.deadline = new Date($scope.task.deadline);
 
-  $scope.dropCallback = function(event, index, item, external) {
-    console.log(task);
-    return task;
-  };
+  $scope.onDropComplete = function (index, obj, evt) {
+    //console.log("drop success, data:", data);
+    //console.log(index);
+    var otherObj = $scope.tasks[index];
+    var otherIndex = $scope.tasks.indexOf(obj);
+    $scope.tasks[index] = obj;
+    $scope.tasks[otherIndex] = otherObj;
+    angular.forEach($scope.tasks, function(value, key) {
+      value.position = key + 1;
+      $scope.updateTask(value);
+    });
+    //$scope.updateProject();
+  }
 
 });

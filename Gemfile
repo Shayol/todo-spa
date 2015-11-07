@@ -21,7 +21,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-angular-xeditable'
   gem 'rails-assets-angular-bootstrap'
   gem 'rails-assets-angular-file-upload'
-  gem 'rails-assets-angular-drag-and-drop-lists'
+  gem 'rails-assets-ngDraggable'
 end
 gem 'angular-rails-templates'
 gem 'sprockets'
