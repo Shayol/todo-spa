@@ -47,6 +47,7 @@ group :development, :test do
   # gem 'fuubar'
   gem 'pry'
   gem 'database_cleaner'
+  gem 'jasmine-rails'
   # gem "teaspoon-jasmine"
   # gem 'phantomjs'
   # gem "guard-teaspoon"

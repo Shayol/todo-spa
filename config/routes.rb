@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   mount_devise_token_auth_for 'User', at: 'auth'
   root 'home#index'
 
