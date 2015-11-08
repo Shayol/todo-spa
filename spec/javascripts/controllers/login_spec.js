@@ -3,16 +3,19 @@ describe('LoginCtrl', function() {
 
   var $controller;
 
-  beforeEach(inject(function(_$controller_){
-    
+  beforeEach(inject(function(_$controller_){   
     $controller = _$controller_;
   }));
 
-  describe('$scope.login', function() {
-    it('has login', function() {
+    it('has $scope.login', function() {
       var $scope = {};
       var controller = $controller('LoginCtrl', { $scope: $scope });
       expect($scope.login).toBeDefined();
     });
-  });
+
+    it('has $scope.authenticate', function() {
+      var $scope = {};
+      var controller = $controller('LoginCtrl', { $scope: $scope });
+      expect($scope.authenticate).toBeDefined();
+    });
 });

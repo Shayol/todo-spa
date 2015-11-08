@@ -10,8 +10,9 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'angularjs-rails'
+
 source 'https://rails-assets.org' do
-  gem 'rails-assets-angular'
   gem 'rails-assets-lodash'
   gem 'rails-assets-restangular'
   gem 'rails-assets-angular-cookie'
