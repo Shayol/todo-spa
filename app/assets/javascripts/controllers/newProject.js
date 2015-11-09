@@ -1,8 +1,8 @@
 angular.module("myApp")
 
-.controller('NewProjectCtrl', function($scope, $state, Restangular) {
+.controller('NewProjectCtrl', function($scope, $state, ProjectsService) {
   $scope.addProject = function(project) {
-    Restangular.all("projects").post(project);
+    ProjectsService.newProject(project);
     $state.go('/projects');
   };
 });
