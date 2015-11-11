@@ -120,7 +120,7 @@ div[id*='task_row'] [class*='col-'] {
 // Grid -- Project Borders
 
 
-[id*='task_row']:nth-last-child(1) > [class*='col-'] {
+[id*='task_row']:nth-last-child(1) [class*='col-'] {
   border-bottom: 1px solid #aaa;
   &:first-child {
     border-bottom-left-radius: 10px;
@@ -169,12 +169,57 @@ div[id*='task_row'] .row:hover > [class*='col-'] {
 
 div.project .row:hover i:not(#checkbox):not(.fa-calendar) {
   opacity: 0.8;
+  cursor: pointer; cursor: hand;
 }
 
 .comment-body:hover {
   i {
     opacity: 0.8;
   }  
+}
+
+.block-form {
+  width: 500px;
+  padding: 30px;
+  margin: 40px;
+  h3 {
+    text-align: center;
+  }
+}
+
+// Sign-in 
+
+.sign-in .block-form {
+  background-color: #FCFBE3;
+  button {
+    margin-bottom: 30px;
+  }
+}
+
+// Project -- Create
+
+.new_project {
+  background-color: #F88379;
+  color: #475885;
+
+  input {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+}
+
+.comment-body {
+  background: #ccc;
+  margin-left: 200px;
+  margin-right: 200px;
+  padding-top: 10px;
+  padding-left: 10px;
+  border-radius: 5px;
+  i {
+    position: absolute;
+    top: 30px;
+    right: 230px;
+  }
 }
 
 // Buttons
@@ -203,45 +248,6 @@ div.project .row:hover i:not(#checkbox):not(.fa-calendar) {
       background: linear-gradient(to bottom, #5689b6 0%,#335791 100%);
       margin-bottom: 40px;
     }
-
-.block-form {
-  width: 500px;
-  padding: 30px;
-  margin: 40px;
-  h3 {
-    text-align: center;
-  }
-}
-
-// Sign-in 
-
-.sign-in .block-form {
-  background-color: #FCFBE3;
-  button {
-    margin-bottom: 30px;
-  }
-}
-
-// Project -- Create
-
-.new_project {
-  background-color: #F88379;
-  color: #475885;
-
-  input {
-  margin-top: 30px;
-  margin-bottom: 30px;
-  }
-}
-
-.comment-body {
-  background: #ccc;
-  margin-left: 200px;
-  margin-right: 200px;
-  padding-top: 10px;
-  padding-left: 10px;
-  border-radius: 5px;
-}
 
 
 

@@ -1,10 +1,11 @@
-describe('NewProjectCtrl', function() {
-  beforeEach(module('myApp'));
+describe("NewProjectCtrl", function() {
+  beforeEach(module("myApp"));
 
-  //var $controller;
+  var $controller;
   var $httpBackend = null;
 
-  beforeEach(inject(function(_$controller_, _$httpBackend_){   
+  beforeEach(inject(function($rootScope, _$controller_, _$httpBackend_){   
+    $scope = $rootScope.$new();
     $controller = _$controller_;
     $httpBackend = _$httpBackend_;
     //$state = _$state_;
@@ -12,8 +13,7 @@ describe('NewProjectCtrl', function() {
  
 
   it ("has $scope.addProject method", function() {
-    var scope = {};
-    var ctrl = $controller('NewProjectCtrl', $scope: scope);
+    var ctrl = $controller('NewProjectCtrl', $scope: $scope);
     expect($scope.addProject).toBeDefined();
   });
 });

@@ -8,7 +8,7 @@
     </span>
   </div>
   <div class="col-md-7 task-title" >
-    <div editable-text='task.title' onaftersave="updateTask(task)">{{task.title }}</div>
+    <span editable-text='task.title' onaftersave="updateTask(task)">{{task.title }}</span>
   </div>
 
 <div class="col-md-2 text-center task-buttons">
@@ -19,11 +19,6 @@
 
 <div class="comments" ng-show="toggleComments">
   <div comment></div>
-  <div class="row">
-  <div class="col-md-11 col-md-offset-1 text-center">
-    <h4>New comment </h4>
-  </div>
-</div>
 <div class="row" ng-controller="NewCommentCtrl" >
   <form>
     <div class="col-md-9 col-md-offset-1 new-comment-input">
