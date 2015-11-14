@@ -7,10 +7,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+  <div ng-show="user.signedIn">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header navbar-right">
+        <p class="navbar-text">Signed in with {{user.email}} </p>
+        <button type="button" class="btn btn-default navbar-btn" ng-click='signOut()'>Sign out</button>
+      </div>
+    </div>
+    </nav>  
+  </div>
+  
 <div class="container">
-<div ng-show="user.signedIn">
-  <button class="btn btn-primary btn-lg" ng-click='signOut()'>Sign out</button>
-</div>
 <toaster-container toaster-options="{'position-class': 'toast-top-right', 'time-out': 5000, 'close-button':true}"></toaster-container>
   <%= yield %>
   <div ui-view></div>
